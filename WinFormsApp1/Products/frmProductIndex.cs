@@ -25,6 +25,8 @@ namespace WinFormsApp1.Products
             {
                 cmbProductIndex.SelectedIndex = 0;
                 txtProductIndex.Text = cmbProductIndex.Text;
+                btnProductIndexDelete.Enabled = true;
+                btnProductIndexUpdate.Enabled = true;
             }
             else
             {
@@ -133,7 +135,6 @@ namespace WinFormsApp1.Products
 
             db.Products.Remove(product);
             db.SaveChanges();
-            LoadProducts();
             if (cmbProductIndex.Items.Count > 0)
             {
                 cmbProductIndex.SelectedIndex = 0;
@@ -142,6 +143,8 @@ namespace WinFormsApp1.Products
             {
                 txtProductIndex.Text = string.Empty;
             }
+            LoadProducts();
+
             MessageBox.Show($"Product '{oldProductName}' deleted!");
         }
     }
