@@ -1,3 +1,4 @@
+using QuestPDF.Fluent;
 using System.ComponentModel;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
@@ -9,6 +10,28 @@ namespace WinFormsApp1
     {
         private BindingList<InvoiceDto> _lines;
         private List<Product> _products;
+        private void btnExportPdf_Click(object sender, EventArgs e)
+        {
+            if (_lines.Count == 0)
+            {
+                MessageBox.Show("No invoice items to export.");
+                return;
+            }
+
+            var document = new InvoiceDocument(_lines);
+
+            using var dialog = new SaveFileDialog
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                FileName = "invoice.pdf"
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                document.GeneratePdf(dialog.FileName);
+                MessageBox.Show("PDF exported successfully!");
+            }
+        }
         private void LoadProducts()
         {
             using var db = new ApplicationDbContext();
@@ -117,8 +140,10 @@ namespace WinFormsApp1
                 var product = _products.FirstOrDefault(p => p.Id == line.ProductId);
 
                 if (product != null)
+                {
                     line.UnitPrice = product.Price;
-
+                    line.ProductName = product.Name;
+                }
                 dataGridView1.Refresh();
             }
         }

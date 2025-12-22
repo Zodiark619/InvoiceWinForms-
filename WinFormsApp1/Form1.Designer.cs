@@ -31,6 +31,7 @@
             btnFrmProductIndex = new Button();
             dataGridView1 = new DataGridView();
             lblGrandTotals = new Label();
+            btnExportPdf = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -63,11 +64,22 @@
             lblGrandTotals.TabIndex = 3;
             lblGrandTotals.Text = "label2";
             // 
+            // btnExportPdf
+            // 
+            btnExportPdf.Location = new Point(688, 51);
+            btnExportPdf.Name = "btnExportPdf";
+            btnExportPdf.Size = new Size(75, 23);
+            btnExportPdf.TabIndex = 4;
+            btnExportPdf.Text = "PDF";
+            btnExportPdf.UseVisualStyleBackColor = true;
+            btnExportPdf.Click += btnExportPdf_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnExportPdf);
             Controls.Add(lblGrandTotals);
             Controls.Add(dataGridView1);
             Controls.Add(btnFrmProductIndex);
@@ -83,5 +95,6 @@
         private Button btnFrmProductIndex;
         private DataGridView dataGridView1;
         private Label lblGrandTotals;
+        private Button btnExportPdf;
     }
 }

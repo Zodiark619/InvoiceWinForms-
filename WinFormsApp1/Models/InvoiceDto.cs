@@ -11,9 +11,20 @@ namespace WinFormsApp1.Models
     {
         private int _quantity;
         private decimal _unitPrice;
-
+        private string _productName;
         public int? ProductId { get; set; }
-
+        public string ProductName
+        {
+            get => _productName;
+            set
+            {
+                if (_productName != value)
+                {
+                    _productName = value;
+                    OnPropertyChanged(nameof(ProductName));
+                }
+            }
+        }
         public int Quantity
         {
             get => _quantity;
