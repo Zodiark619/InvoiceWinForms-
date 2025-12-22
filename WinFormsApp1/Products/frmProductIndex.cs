@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,17 +24,22 @@ namespace WinFormsApp1.Products
 
             if (cmbProductIndex.Items.Count > 0)
             {
+
                 cmbProductIndex.SelectedIndex = 0;
                 txtProductIndex.Text = cmbProductIndex.Text;
+                int productId = (int)cmbProductIndex.SelectedValue;
+                txtProductPrice.Value = db.Products.Find(productId).Price;
+
                 btnProductIndexDelete.Enabled = true;
                 btnProductIndexUpdate.Enabled = true;
             }
             else
             {
                 txtProductIndex.Text ="*No products in database";
+                txtProductPrice.Value = 0;
+
                 btnProductIndexDelete.Enabled = false;
                 btnProductIndexUpdate.Enabled = false;
-
             }
         }
         
@@ -63,6 +69,11 @@ namespace WinFormsApp1.Products
             if (cmbProductIndex.SelectedValue is int productId)
             {
                 txtProductIndex.Text = cmbProductIndex.Text;
+                using var db = new ApplicationDbContext();
+
+                int id = (int)cmbProductIndex.SelectedValue;
+                txtProductPrice.Value = db.Products.Find(id).Price;
+
             }
         }
 
@@ -80,7 +91,7 @@ namespace WinFormsApp1.Products
             }
             string newName = txtProductIndex.Text.Trim();
             string oldProductName = cmbProductIndex.Text;
-
+            decimal newProductPrice = txtProductPrice.Value;
             using var db = new ApplicationDbContext();
 
             var product = db.Products.Find(productId);
@@ -94,13 +105,15 @@ namespace WinFormsApp1.Products
             //bool duplicateExists = db.Products.Any(p =>
             //    p.Id != productId &&
             //    p.Name.Equals(newName, StringComparison.OrdinalIgnoreCase));
-            product.Name = newName;
+            decimal oldProductPrice = product.Price;
 
+            product.Name = newName;
+            product.Price = newProductPrice;
             var names = db.Products
           .Select(p => p.Name)
              .ToList();
             bool duplicateExists = names.Any(x => string.Equals(x, product.Name, StringComparison.OrdinalIgnoreCase));
-            if (duplicateExists)
+            if (duplicateExists&& product.Price== oldProductPrice)
             {
                 MessageBox.Show("Product already exists");
                 return;
@@ -111,7 +124,7 @@ namespace WinFormsApp1.Products
             LoadProducts();
             cmbProductIndex.SelectedValue = productId;
 
-            MessageBox.Show($"Product '{oldProductName}' updated to '{product.Name}'");
+            MessageBox.Show($"Product '{oldProductName} ({oldProductPrice.ToString("c" )})' updated to '{product.Name} ({product.Price.ToString("c" )})'");
         }
 
         private void btnProductIndexDelete_Click(object sender, EventArgs e)

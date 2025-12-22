@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,8 @@ namespace WinFormsApp1
 
             var product = new Product
             {
-                Name = txtProductName.Text.Trim()
+                Name = txtProductName.Text.Trim(),
+                Price=txtProductPrice.Value,
             };
 
             using var db = new ApplicationDbContext();
@@ -44,7 +46,7 @@ namespace WinFormsApp1
             }
             db.Products.Add(product);
             db.SaveChanges();
-            MessageBox.Show($"Product '{product.Name}' is successfully created!");
+            MessageBox.Show($"Product '{product.Name} ({product.Price.ToString("c" )})' is successfully created!");
             ProductSaved?.Invoke(this, EventArgs.Empty);
             txtProductName.Clear();
             txtProductName.Focus();

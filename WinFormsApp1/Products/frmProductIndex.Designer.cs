@@ -35,7 +35,9 @@
             txtProductIndex = new TextBox();
             btnProductIndexUpdate = new Button();
             btnProductIndexDelete = new Button();
+            txtProductPrice = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtProductPrice).BeginInit();
             SuspendLayout();
             // 
             // btnFrmCreateProduct
@@ -89,11 +91,21 @@
             btnProductIndexDelete.UseVisualStyleBackColor = true;
             btnProductIndexDelete.Click += btnProductIndexDelete_Click;
             // 
+            // txtProductPrice
+            // 
+            txtProductPrice.DecimalPlaces = 2;
+            txtProductPrice.Location = new Point(143, 227);
+            txtProductPrice.Maximum = new decimal(new int[] { 1410065407, 2, 0, 0 });
+            txtProductPrice.Name = "txtProductPrice";
+            txtProductPrice.Size = new Size(543, 23);
+            txtProductPrice.TabIndex = 6;
+            // 
             // frmProductIndex
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtProductPrice);
             Controls.Add(btnProductIndexDelete);
             Controls.Add(btnProductIndexUpdate);
             Controls.Add(txtProductIndex);
@@ -102,6 +114,7 @@
             Name = "frmProductIndex";
             Text = "frmProductIndex";
             ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtProductPrice).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +127,6 @@
         private Button btnProductIndexUpdate;
         private Button btnProductIndexDelete;
         private BindingSource productBindingSource;
+        private NumericUpDown txtProductPrice;
     }
 }

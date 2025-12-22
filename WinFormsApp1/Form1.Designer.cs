@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             btnFrmProductIndex = new Button();
+            dataGridView1 = new DataGridView();
+            lblGrandTotals = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnFrmProductIndex
@@ -41,19 +44,44 @@
             btnFrmProductIndex.UseVisualStyleBackColor = true;
             btnFrmProductIndex.Click += btnFrmProductIndex_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(92, 123);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(639, 261);
+            dataGridView1.TabIndex = 1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            // 
+            // lblGrandTotals
+            // 
+            lblGrandTotals.AutoSize = true;
+            lblGrandTotals.Location = new Point(295, 409);
+            lblGrandTotals.Name = "lblGrandTotals";
+            lblGrandTotals.Size = new Size(38, 15);
+            lblGrandTotals.TabIndex = 3;
+            lblGrandTotals.Text = "label2";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblGrandTotals);
+            Controls.Add(dataGridView1);
             Controls.Add(btnFrmProductIndex);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button btnFrmProductIndex;
+        private DataGridView dataGridView1;
+        private Label lblGrandTotals;
     }
 }

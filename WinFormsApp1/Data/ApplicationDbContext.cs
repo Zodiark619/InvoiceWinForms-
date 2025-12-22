@@ -9,7 +9,7 @@ namespace WinFormsApp1.Data
 {
     public class ApplicationDbContext:DbContext
     {
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

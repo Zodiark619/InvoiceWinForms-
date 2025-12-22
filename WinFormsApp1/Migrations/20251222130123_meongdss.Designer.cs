@@ -10,8 +10,8 @@ using WinFormsApp1.Data;
 namespace WinFormsApp1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251221034857_32")]
-    partial class _32
+    [Migration("20251222130123_meongdss")]
+    partial class meongdss
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,9 @@ namespace WinFormsApp1.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

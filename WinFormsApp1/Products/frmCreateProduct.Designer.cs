@@ -32,6 +32,9 @@
             btnCreateProductSave = new Button();
             txtProductName = new TextBox();
             label2 = new Label();
+            label3 = new Label();
+            txtProductPrice = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)txtProductPrice).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -46,7 +49,7 @@
             // 
             // btnCreateProductSave
             // 
-            btnCreateProductSave.Location = new Point(271, 245);
+            btnCreateProductSave.Location = new Point(276, 302);
             btnCreateProductSave.Name = "btnCreateProductSave";
             btnCreateProductSave.Size = new Size(220, 54);
             btnCreateProductSave.TabIndex = 1;
@@ -70,17 +73,38 @@
             label2.TabIndex = 3;
             label2.Text = "Product Name :";
             // 
+            // label3
+            // 
+            label3.Font = new Font("Segoe UI", 29F);
+            label3.Location = new Point(12, 222);
+            label3.Name = "label3";
+            label3.Size = new Size(291, 59);
+            label3.TabIndex = 5;
+            label3.Text = "Product Price :";
+            // 
+            // txtProductPrice
+            // 
+            txtProductPrice.DecimalPlaces = 2;
+            txtProductPrice.Location = new Point(326, 240);
+            txtProductPrice.Maximum = new decimal(new int[] { 1215752191, 23, 0, 0 });
+            txtProductPrice.Name = "txtProductPrice";
+            txtProductPrice.Size = new Size(484, 23);
+            txtProductPrice.TabIndex = 6;
+            // 
             // frmCreateProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(822, 334);
+            ClientSize = new Size(822, 393);
+            Controls.Add(txtProductPrice);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txtProductName);
             Controls.Add(btnCreateProductSave);
             Controls.Add(label1);
             Name = "frmCreateProduct";
             Text = "frmCreateProduct";
+            ((System.ComponentModel.ISupportInitialize)txtProductPrice).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -91,5 +115,7 @@
         private Button btnCreateProductSave;
         private TextBox txtProductName;
         private Label label2;
+        private Label label3;
+        private NumericUpDown txtProductPrice;
     }
 }
